@@ -3,9 +3,9 @@ let hideEl
 let showEl
 
 // Set the date we're counting down to and current date + differance
-let countDownDate = new Date("Jun 7, 2024");
+let countDownDate = new Date("Jun 7, 2024").setTime();
 let x = setInterval(function() {
-  let now = new Date();
+  let now = new Date().setTime();
   let distance = countDownDate - now;
   // Calculate days (from w3schools.com)
   let days = Math.floor(distance / (1000 * 60 * 60 * 24));
