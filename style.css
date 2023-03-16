@@ -1,12 +1,7 @@
 body {
    
-  background: #00F260;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #0575E6, #00F260);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #0575E6, #00F260); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-  /* linear-gradient(217deg, rgba(178, 255, 154, 0.8), transparent 70.71%),
-  linear-gradient(127deg, rgb(255, 187, 170), transparent 70.71%),
-  linear-gradient(336deg, rgb(145, 192, 255), transparent 70.71%); */
+  background: #00F260;  /* fallback for other browsers */
+  background: linear-gradient(to right, #0575E6, #00F260); 
   text-align: center;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
@@ -30,6 +25,9 @@ section {
   padding: 1rem;
   border: solid white; 
   margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 ul {
@@ -43,7 +41,40 @@ li {
   justify-content: space-between;
   text-align: start;
 }
+li p {
+  max-width: 85%;
+}
 
-.done li {
+div {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.current p {
+  margin: .5rem;
+  font-size: 1.25rem;
+  font-weight: 400;
+  font-style: italic;
+}
+
+#demo {
   display: none;
+  animation: pop .5s linear infinite alternate
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0
+}
+
+@keyframes pop {
+0% {
+  transform: scale(1);
+}  
+100% {
+  transform: scale(2);
+}
 }

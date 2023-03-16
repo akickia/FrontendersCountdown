@@ -13,7 +13,7 @@
   </article>
   <article>
     <section class="countdown">
-      <h2>DAGAR TILL EXAMEN: </h2>
+      <h2>DAGAR TILL EXAMENSDAG: </h2>
       <h2 id="days-left"></h2>
     </section>
     <section class="doneDays">
@@ -22,45 +22,47 @@
     </section>
   </article>
   <article>
-    <section class="done">
-      <h2>Avklarade kurser:</h2>
-      <ul>
-        <li class="intro"><p>Introduktion till IT-branschen och frontendutveckling</p><p>5p</p></li>
-        <li class="ux1"><p>UX / UI grunder</p><p>30p</p></li>
-        <li class="html"><p>HTML & CSS</p><p>40p</p></li>
-        <li class="progr"><p>Introduktion till programmering och datalogiskt tänkande</p><p>10p</p></li>
-        <li class="js"><p>JavaScript med ES6+</p><p>40p</p></li>
-        <li class="agile"><p>Arbeta agilt</p><p>15p</p></li>
-        <li class="react"><p>Frontendramverk</p><p>35p</p></li>
-        <li class="node"><p>Backend med Node.js</p><p>25p</p></li>
-        <li class="cloud"><p>Utveckling & driftsättning i molnmiljö</p><p>30p</p></li>
-        <li class="ux2"><p>UX/UI fördjupning</p><p>20p</p></li>
-        <li class="fullstack"><p>Full stack webbapplikation</p><p>30p</p></li>
-        <li class="lia1"><p>LIA 1</p><p>45p</p></li>
-        <li class="exam"><p>Examensarbete</p><p>25p</p></li>
-        <li class="lia2"><p>LIA 2</p><p>50p</p></li>
-      </ul>
-    </section>
-    <section class="upcomming">
-      <h2>Kommande kurser:</h2>
-      <ul>
-        <li class="intro"><p>Introduktion till IT-branschen och frontendutveckling</p><p>5p</p></li>
-        <li class="ux1"><p>UX / UI grunder</p><p>30p</p></li>
-        <li class="html"><p>HTML & CSS</p><p>40p</p></li>
-        <li class="progr"><p>Introduktion till programmering och datalogiskt tänkande</p><p>10p</p></li>
-        <li class="js"><p>JavaScript med ES6+</p><p>40p</p></li>
-        <li class="agile"><p>Arbeta agilt</p><p>15p</p></li>
-        <li class="react"><p>Frontendramverk</p><p>35p</p></li>
-        <li class="node"><p>Backend med Node.js</p><p>25p</p></li>
-        <li class="cloud"><p>Utveckling & driftsättning i molnmiljö</p><p>30p</p></li>
-        <li class="ux2"><p>UX/UI fördjupning</p><p>20p</p></li>
-        <li class="fullstack"><p>Full stack webbapplikation</p><p>30p</p></li>
-        <li class="lia1"><p>LIA 1</p><p>45p</p></li>
-        <li class="exam"><p>Examensarbete</p><p>25p</p></li>
-        <li class="lia2"><p>LIA 2</p><p>50p</p></li>
+    <h1 id="demo"></h1>
+  </article>
+  <article>
+    <section>
+      <h2>Nuvarande kurs:</h2>
+      <ul class="current">
       </ul>
     </section>
   </article>
+  <article>
+    <section>
+      <h2>Avklarade kurser:</h2>
+      <ul class="done">
+      </ul>
+      <div>
+        <h4>Totalt:</h4>
+        <h4 id="total-done"></h4>
+      </div>
+    </section>
+    <section>
+      <h2>Kommande kurser:</h2>
+      <ul class="upcomming">
+      </ul>
+      <div>
+        <h4>Totalt:</h4>
+        <h4 id="total-comming">
+        </h4>
+      </div>
+    </section>
+  </article>
+  <article>
+    <section>
+      <div>
+        <h4>Totalt:</h4>
+        <h4 id="total">
+        </h4>
+      </div>
+    </section>
+  </article>
+  <canvas id="my-canvas"></canvas>
   <script src="script.js"></script>
+  <script src="confetti.js"></script>
 </body>
 </html>

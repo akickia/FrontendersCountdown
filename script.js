@@ -1,70 +1,167 @@
 //Global variables
-let hideEl
-let showEl
+let done
+let point
+let courses = [
+  {
+    name: "Introduktion till IT-branschen och frontendutveckling",
+    points: 5,
+    done: 643,
+    start: 648,
+  },
+    {
+    name: "UX/UI grunder",
+    points: 30,
+    done: 601,
+    start: 641,
+  },
+    {
+    name: "HTML & CSS",
+    points: 40,
+    done: 544,
+    start: 599,
+  },
+    {
+    name: "Introduktion till programmering och datalogiskt tänkande",
+    points: 10,
+    done: 530,
+    start: 542,
+  },
+    {
+    name: "JavaScript med ES6+",
+    points: 40,
+    done: 467,
+    start: 521,
+  },
+    {
+    name: "Arbeta agilt",
+    points: 15,
+    done: 446,
+    start: 465,
+  },
+    {
+    name: "Frontendramverk",
+    points: 35,
+    done: 398,
+    start: 444,
+  },
+    {
+    name: "Backend med Node.js",
+    points: 25,
+    done: 363,
+    start: 396,
+  },
+      {
+    name: "Utveckling & driftsättning i molnmiljö",
+    points: 30,
+    done: 244,
+    start: 284,
+  },
+      {
+    name: "UX/UI fördjupning",
+    points: 20,
+    done: 215,
+    start: 242,
+  },
+  {
+    name: "Full stack webbapplikation",
+    points: 30,
+    done: 173,
+    start: 213,
+  },
+  {
+    name: "LIA 1",
+    points: 45,
+    done: 103,
+    start: 171,
+  },
+  {
+    name: "Examensarbete",
+    points: 25,
+    done: 68,
+    start: 101,
+  },
+  {
+    name: "LIA 2",
+    points: 50,
+    done: 0,
+    start: 66,
+  },
+]
+
 
 // Set the date we're counting down to and current date + differance
-let countDownDate = new Date("Jun 7, 2024");
+let countDownDate = new Date("Jun 7, 2024 23:59:00");
 let x = setInterval(function() {
   let now = new Date();
   let distance = countDownDate - now;
   // Calculate days (from w3schools.com)
   let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  days = days+1
-  //Show countdown
+  //Show number of days
   document.getElementById("days-left").innerHTML = days + " dagar "
-
-  //variables for conditions, refactor later
-let examinationDay = 0
-let daysLeftBeforeLIA2 = examinationDay+69
-let daysLeftBeforeExam = daysLeftBeforeLIA2+35
-let daysLeftBeforeLia1 = daysLeftBeforeExam +70
-let daysLeftBeforeFullstack = daysLeftBeforeLia1+42
-let daysLeftBeforeUX2 = daysLeftBeforeFullstack+28
-let daysLeftBeforeFCloud = daysLeftBeforeUX2+42
-let daysBeforeSummer = daysLeftBeforeFCloud + 77
-let daysLeftBeforeNode = daysBeforeSummer+35
-let daysLeftBeforeReact = daysLeftBeforeNode+49
-let daysLeftBeforeAgile = daysLeftBeforeReact+21
-let daysLeftBeforeJs = daysLeftBeforeAgile+ 56
-let daysBeforeChristmas = daysLeftBeforeJs+7
-let daysLeftBeforeProg = daysBeforeChristmas+14
-let daysLeftBeforeHTML = daysLeftBeforeProg+56
-let daysLeftBeforeUX1 = daysLeftBeforeHTML+42
-let daysLeftBeforeIntro = daysLeftBeforeUX1+5
-
-//Displaying currently done days
-document.getElementById("days-done").innerHTML = daysLeftBeforeIntro-1-days + " dagar ";
+  document.getElementById("days-done").innerHTML = 648-days + " dagar ";
 
 
-//Calling function with conditions for each course
-  ifCalc(days, daysLeftBeforeUX1, ".upcomming .intro", ".done .intro")
-  ifCalc(days, daysLeftBeforeHTML, ".upcomming .ux1", ".done .ux1")
-  ifCalc(days, daysBeforeChristmas, ".upcomming .html", ".done .html")
-  ifCalc(days, daysLeftBeforeJs, ".upcomming .progr", ".done .progr")
-  ifCalc(days, daysLeftBeforeAgile, ".upcomming .js", ".done .js")
-  ifCalc(days, daysLeftBeforeReact, ".upcomming .agile", ".done .agile")
-  ifCalc(days, daysLeftBeforeNode, ".upcomming .react", ".done .react")
-  ifCalc(days, daysBeforeSummer, ".upcomming .node", ".done .node")
-  ifCalc(days, daysLeftBeforeUX2, ".upcomming .cloud", ".done .cloud")
-  ifCalc(days, daysLeftBeforeFullstack, ".upcomming .ux2", ".done .ux2")
-  ifCalc(days, daysLeftBeforeLia1, ".upcomming .fullstack", ".done .fullstack")
-  ifCalc(days, daysLeftBeforeExam, ".upcomming .lia1", ".done .lia1")
-  ifCalc(days, daysLeftBeforeLIA2, ".upcomming .exam", ".done .exam")
-  ifCalc(days, examinationDay, ".upcomming .lia2", ".done .lia2")
+setCourses(days)
 
-  // If the count down is finished
+  // If the countdown is finished
   if (days <= 0) {
     clearInterval(x);
     document.getElementById("demo").innerHTML = "EXAMEN!";
+    document.getElementById("demo").style.display = "block";
+    winner()
   }
 }, 1000);
 
-//Comparing function to hide/show courses in different ul's
-function ifCalc(presentDays, numberOfDays, hideEl, showEl) {
-  if (presentDays <= numberOfDays) {
-    let hide = document.querySelector(hideEl)
-    let show = document.querySelector(showEl)
-    hide.style.display = "none"
-    show.style.display = "flex"
+
+ 
+//Display courses
+  function setCourses(days) {
+    let totalDone = []
+    let totalLeft = []
+    let total = []
+    let doneEl = document.querySelector(".done")
+    let commingEl = document.querySelector(".upcomming")
+    let currentEl = document.querySelector(".current")
+    doneEl.innerHTML = ""
+    commingEl.innerHTML = ""
+    currentEl.innerHTML = ""
+    courses.forEach(course => {
+      total.push(course.points)
+      let courseEl = document.createElement("li")
+      courseEl.innerHTML = `
+      <p>${course.name}</p>
+      <p>${course.points} yhp</p>
+      `
+      if ((days > course.done) && (days <= course.start)) {
+        currentEl.appendChild(courseEl)
+      }
+      else if (days <= course.done) {
+        totalDone.push(course.points)
+        doneEl.appendChild(courseEl)
+      }
+      else {
+        totalLeft.push(course.points)
+        commingEl.appendChild(courseEl)
+      }
+    })
+
+    //Show total points
+    let totalDoneEl = document.getElementById("total-done")
+    totalDoneEl.textContent = calcTotals(totalDone) + " yhp"
+    let totalLeftEl = document.getElementById("total-comming")
+    totalLeftEl.textContent = calcTotals(totalLeft) + " yhp"
+    let totalEl = document.getElementById("total")
+    totalEl.textContent = calcTotals(total) + " yhp"
   }
-}
+
+  //Calculate sum off items in array
+  function calcTotals(array) {
+    let sum = 0;
+    for (let i=0; i < array.length; i++) 
+    { 
+       sum += array[i]; 
+    }
+    return sum
+  }
+
+  
