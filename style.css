@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
    
   background: #00F260;  /* fallback for other browsers */
